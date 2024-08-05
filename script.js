@@ -18,9 +18,13 @@ function makeGrid(size) {
     for (let i = 0; i < size; i++) {
       const column = document.createElement("div");
       edgeLength = 960 / size + "px";
-      column.style.cssText = `width: ${edgeLength}; height: ${edgeLength}; border: 1px solid black;`;
+      column.style.cssText = `width: ${edgeLength}; height: ${edgeLength}; border: 1px solid black; background-color: transparent`;
       // Set up hover effect
-      column.addEventListener("mouseenter", (event) => event.target.style.backgroundColor = getRandomColor());
+      column.addEventListener("mouseenter", (event) => {
+        if (event.target.style.backgroundColor == "transparent") {
+          event.target.style.backgroundColor = getRandomColor();
+        }
+      });
       row.appendChild(column);
     }
     grid.appendChild(row);
